@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -20,6 +22,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AnimationFromNetworkActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DeduplicatedNetworkLoadsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GridSvgaDemoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OldApiGridSvgaDemoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OldApiDeduplicatedNetworkLoadsActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

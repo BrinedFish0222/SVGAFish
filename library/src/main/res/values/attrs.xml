@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SVGAImageView">
+        <attr name="loopCount" format="integer" />
+        <attr name="antiAlias" format="boolean" />
+        <attr name="fillMode">
+            <enum name="Backward" value="0" />
+            <enum name="Forward" value="1" />
+            <enum name="Clear" value="2" />
+        </attr>
+    </declare-styleable>
+</resources>

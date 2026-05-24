@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">SVGA-Fish</string>
+    <string name="examples_hub_title">Examples</string>
+    <string name="example_animation_from_network">Animation from network</string>
+    <string name="example_deduplicated_network_loads">Deduplicated network loads</string>
+    <string name="deduplicated_network_loads_player_one">Player 1</string>
+    <string name="deduplicated_network_loads_player_two">Player 2</string>
+    <string name="deduplicated_network_loads_player_three">Player 3</string>
+    <string name="example_grid_svga">Grid SVGA Demo</string>
+    <string name="example_old_api_grid_svga">Old API Grid SVGA</string>
+    <string name="example_old_api_deduplicated_network_loads">Old API Deduplicated Network Loads</string>
+    <string name="github_download_tips">网络需要支持访问 GitHub 进行下载 SVGA 动画</string>
 </resources>
