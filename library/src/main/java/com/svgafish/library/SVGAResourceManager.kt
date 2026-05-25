@@ -17,14 +17,23 @@ import com.svgafish.library.manager.SVGATaskScheduler
 import com.svgafish.library.model.SVGAVideoModel
 import com.svgafish.library.session.SVGAVideoSession
 import java.io.InputStream
-import java.io.File
 import java.net.URL
 
-class SVGAResourceManager private constructor(
+class SVGAResourceManager(
     private val cachePathResolver: SVGACachePathResolver,
     private val taskScheduler: SVGATaskScheduler,
     private val resourceStore: SVGAResourceStore
 ) {
+    companion object {
+        fun create(context: Context): SVGAResourceManager {
+            return SVGAResourceManager(
+                cachePathResolver = Md5CachePathResolver(context.cacheDir),
+                taskScheduler = ConcurrentTaskScheduler(maxConcurrency = 3),
+                resourceStore = MemorySVGAResourceStore()
+            )
+        }
+    }
+
     private val callbackDispatcher = MainThreadRequestEventDispatcher()
     private val videoEntityFactory = VideoEntityFactory(cachePathResolver)
     private val resourceResolver = DefaultSVGAResourceResolver(
@@ -52,34 +61,6 @@ class SVGAResourceManager private constructor(
 
     fun interface LoadHandle {
         fun cancel()
-    }
-
-    companion object {
-        private const val DEFAULT_MAX_CONCURRENCY = 3
-
-        fun create(context: Context): SVGAResourceManager {
-            return create(context.cacheDir)
-        }
-
-        fun create(cacheDir: File): SVGAResourceManager {
-            return create(
-                cacheDir = cacheDir,
-                maxConcurrency = DEFAULT_MAX_CONCURRENCY,
-                resourceStore = MemorySVGAResourceStore()
-            )
-        }
-
-        fun create(
-            cacheDir: File,
-            maxConcurrency: Int = DEFAULT_MAX_CONCURRENCY,
-            resourceStore: SVGAResourceStore = MemorySVGAResourceStore()
-        ): SVGAResourceManager {
-            return SVGAResourceManager(
-                cachePathResolver = Md5CachePathResolver(cacheDir),
-                taskScheduler = ConcurrentTaskScheduler(maxConcurrency),
-                resourceStore = resourceStore
-            )
-        }
     }
 
     fun loadFromURL(
